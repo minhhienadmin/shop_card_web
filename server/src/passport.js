@@ -6,8 +6,8 @@ const db = require('./models')
 const { v4: uuidv4 } = require('uuid');
 
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    clientID: process.env.GOOGLE_CLIENT_ID||"329325730959-fpfmmsnf5qha0g3gh8ouns6c4qf456h0.apps.googleusercontent.com",
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET||"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",
     callbackURL: "/api/v1/auth/google/callback"
 },
     async function (accessToken, refreshToken, profile, cb) {
