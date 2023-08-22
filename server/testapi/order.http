@@ -1,0 +1,79 @@
+#CART  
+###
+GET  http://localhost:3001/api/v1/order/get-all?userId=1
+###
+DELETE   http://localhost:3001/api/v1/order/delete?userId=2&orderId=8
+###
+PUT  http://localhost:3001/api/v1/order/update?orderId=18
+Content-Type: application/json
+
+{
+    "status": "completed"
+}
+###
+POST  http://localhost:3001/api/v1/order/create?userId=2
+Content-Type: application/json
+
+{
+    "userId":"2",
+    "nameReceive":"Vinh0Gay",
+    "address":"ktx khu A",
+    "phone":"0011223344",
+    "productList":[
+        {
+            "name":"card bo góc",
+            "productId":"100000",
+            "material":"gỗ",
+            "size":"3x4",
+            "sides":"1",
+            "effect":"nhám",
+            "quantity":"30",
+            "isDesigned":"Chưa",
+            "img_src":"http://localhost:3001/images/"
+        },
+        {
+            "name":"Card C300",
+            "productId":"100002",
+            "marterial":"gỗ",
+            "size":"3x4",
+            "side":"1",
+            "effect":"nhám",
+            "quantity":"30",
+            "isDesigned":"Chưa",
+            "img_src":"http://localhost:3001/images/"
+        }
+    ]
+}
+   // "id": "",  //productId
+
+
+###
+GET http://localhost:3001/api/v1/order/all?userId=1
+
+{
+    "orderId":"",
+    "orderCode":"",
+    "createdAt":"",
+    "userId":"",
+    "nameRecieve":"",
+    "address":"",
+    "phone":"",
+    "productList":[//Cái này là danh sách các sản phẩm trong đơn hàng
+        {
+            "name":"",
+            "productId":"",
+            "marterial":"",
+            "size":"",
+            "effect":"",
+            "quantity":"",
+            "isDesigned":"",
+            "img_src":""
+        }
+    ]
+}
+
+###
+
+###
+GET http://localhost:3001/api/v1/order/get-all
+###

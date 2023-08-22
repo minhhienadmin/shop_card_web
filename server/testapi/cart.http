@@ -1,0 +1,82 @@
+#CART  
+###
+GET  http://localhost:3001/api/v1/cart/get?userId=2
+
+###
+DELETE   http://localhost:3001/api/v1/cart/delete?cartId=3
+###
+# link này đâu cần đâu
+# PUT  http://localhost:3001/api/v1/cart/update?userId=2&cartId=1
+###
+POST  http://localhost:3001/api/v1/cart/create?userId=2
+Content-Type: application/json
+
+{
+    "userId":"2",
+    "productList":[
+        {
+            "name":"card bo góc",
+            "productId":"100000",
+            "marterial":"gỗ",
+            "size":"3x4",
+            "effect":"nhám",
+            "quantity":"30",
+            "isDesigned":"Chưa",
+            "img_src":"http://localhost:3001/images/",
+            "sides":"1 mặt"
+        },
+        {
+            "name":"Card C300",
+            "productId":"100002",
+            "marterial":"gỗ",
+            "size":"3x4",
+            "effect":"nhám",
+            "quantity":"30",
+            "isDesigned":"Chưa",
+            "img_src":"http://localhost:3001/images/"
+        }
+    ]
+}
+
+
+
+   // "id": "",  //productId
+
+###
+GET  http://localhost:3001/api/v1/cart/item/get?cartItemId=2
+###
+DELETE  http://localhost:3001/api/v1/cart/item/delete?cartItemId=1
+###
+PUT  http://localhost:3001/api/v1/cart/item/update?cartItemId=2
+Content-Type: application/json
+
+{
+    "productId": 100000,
+    "name": "card bo góc",
+    "sides": 1,
+    "price": null,
+    "img_src": "http://localhost:3001/images/",
+    "isDesigned": "Chưa",
+    "quantity": 30,
+    "material": null,
+    "effect": "nhám",
+    "size": "3x4"
+}
+
+###
+POST  http://localhost:3001/api/v1/cart/item/add?cartId=3
+Content-Type: application/json
+
+{
+    "productId": 100000,
+    "name": "card bo góc",
+    "sides": 1,
+    "price": null,
+    "img_src": "http://localhost:3001/images/",
+    "isDesigned": "Chưa",
+    "quantity": 30,
+    "material": null,
+    "effect": "nhám",
+    "size": "3x4"
+}
+###

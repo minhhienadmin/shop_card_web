@@ -1,0 +1,117 @@
+GET http://localhost:3001/
+
+###HOME
+##
+GET http://localhost:3001/api/v1/client/home/slides
+{
+    "link":""
+}
+
+##
+GET http://localhost:3001/api/v1/client/home/trendingList
+
+{
+    "rank":"",
+    "name":"",
+    "image":"",
+    "material":"",
+    "effect":"",
+    "size":""
+}
+
+###
+GET http://localhost:3001/api/v1/product/all
+
+{
+    "product_id":"",
+    "name":"",
+    "image":"",
+    "unit_price":"",
+    "love":"",
+}
+
+
+###Account
+##
+GET http://localhost:3001/api/v1/client/account?id=?
+
+###
+POST http://localhost:3001/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin112@gmail.com",
+    "password": "password"
+}
+
+
+###
+GET http://localhost:3001/api/v1/user/
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiYWRtaW4xMTJAZ21haWwuY29tIiwiaWF0IjoxNjg1NTM4ODAxLCJleHAiOjE2ODU1Mzk4MDF9.9SS4MzRpSfcNM6pG7Wl2SmioRnZ-d2YQvxI1UFeAwB8
+
+
+#copy cái token nhận đc khi đăng nhập mà bỏ dô :>
+
+
+###Order Information
+POST http://localhost:3001/api/v1/client/orderInfor
+
+###Cart Information
+POST http://localhost:3001/api/v1/client/CartInfor
+
+###
+POST http://localhost:3001/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "email": "admin1@gmail.com",
+    "password": "password",
+    "phone": "0123",
+    "name": "vynmm"
+}
+
+###
+GET http://localhost:3001/api/v1/product/100016
+
+#product/:productId
+###
+DELETE  http://localhost:3001/api/v1/product/7
+
+#product/:productId
+###
+PUT  http://localhost:3001/api/v1/product/100000
+Content-Type: application/json
+
+{
+    "name": "Changed"
+}
+
+#product/:productId
+
+###
+###
+###
+
+#CART
+
+POST  http://localhost:3001/api/v1/cart/create-new?userId=1
+Content-Type: application/json
+
+{
+    "name":"Đơn hàng 1",
+    "productId":"100002",
+    "material":"1",
+    "size":"12",
+    "effect":"32",
+    "quantity":"34",
+    "isDesigned":"Đã có",
+    "img_src":"link drive"
+}
+   // "id": "",  //productId
+###
+GET  http://localhost:3001/api/v1/cart/get?userId=2
+
+###
+DELETE   http://localhost:3001/api/v1/cart/delete?userId=2&cartId=1
+###
+PUT  http://localhost:3001/api/v1/cart/update?userId=2&cartId=1

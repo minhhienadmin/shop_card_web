@@ -1,0 +1,81 @@
+[
+    {
+        "name": "facebook",
+        "title": "Shop Ảnh nổi 3D Lenticular",
+        "link": "https://www.facebook.com/chuyeninanh3dlenticular",
+        "theme": "social media"
+    },
+    {
+        "name": "tiktok",
+        "title": "@lenti_lab",
+        "link": "https://www.tiktok.com/@lenti_lab",
+        "theme": "social media"
+    },
+    {
+        "name": "youtube",
+        "title": "3D lenticularvn",
+        "link": "https://www.youtube.com/@3dlenticularvn296",
+        "theme": "social media"
+    },
+    {
+        "name": "",
+        "title": "Hotline",
+        "link": "093 761 7695",
+        "theme": "contact"
+    },
+    {
+        "name": "",
+        "title": "Hotline",
+        "link": "096 533 7436",
+        "theme": "contact"
+    },
+    {
+        "name": "",
+        "title": "Email",
+        "link": "3dlenticularvn@gmail.com",
+        "theme": "contact"
+    },
+    {
+        "name": "",
+        "title": "Địa chỉ",
+        "link": "Trường Thọ, Thủ Đức, Tp. Hồ Chí Minh",
+        "theme": "store infor"
+    },
+    {
+        "name": "",
+        "title": "Giờ mở cửa",
+        "link": "8h - 22h, từ thú 2 - thứ 7",
+        "theme": "store infor"
+    },
+    {
+        "name": "",
+        "title": "",
+        "link": "Chuyên in ấn hình ảnh 3D",
+        "theme": "service"
+    },
+    {
+        "name": "",
+        "title": "",
+        "link": "Chuyên in các loại card (card giấy C300, PVC, ...)",
+        "theme": "service"
+    },
+    {
+        "name": "",
+        "title": "",
+        "link": "Rửa ảnh online - chất lượng cao",
+        "theme": "service"
+    },
+    {
+        "name": "slider",
+        "title": "https://res.cloudinary.com/djchyv9o9/image/upload/v1686663887/Lenticular/anh_bia_card_lenti_egab75.jpg",
+        "link": "100000",
+        "theme": "Image Slider"
+    },
+    {
+        "name": "slider",
+        "title": "https://res.cloudinary.com/djchyv9o9/image/upload/v1686663987/Lenticular/anh_bia_card_pvc-01-01_u5ftr4.jpg",
+        "link": "100002",
+        "theme": "Image Slider"
+    }
+
+]
