@@ -30,7 +30,7 @@ POST http://localhost:3001/api/v1/auth/register
 Content-Type: application/json
 
 {
-    "email": "admin11@gmail.com",
+    "email": "admin112@gmail.com",
     "password": "password",
     "phone": "0123",
     "name": "vynmm"

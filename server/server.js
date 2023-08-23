@@ -6,7 +6,7 @@ require('./connection_database')
 import './src/passport';
 const app = express()
 
-const allowedOrigins = [process.env.CLIENT_URL, process.env.HOST_URL, process.env.PORT, process.env.MANAGER_URL];
+const allowedOrigins = [process.env.CLIENT_URL, process.env.HOST_URL, process.env.HOST_URL2, process.env.MANAGER_URL];
 
 app.use(cors({
     origin: allowedOrigins,
