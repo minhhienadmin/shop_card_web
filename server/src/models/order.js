@@ -54,6 +54,7 @@ Order.init({
   {
     sequelize,
     modelName: 'Order',
+    tableName: 'orders',
   });
   return Order;
 };
