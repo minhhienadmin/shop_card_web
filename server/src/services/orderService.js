@@ -53,14 +53,17 @@ export const createOrder = async (orderData) => {
 };
 
 
-export const getAll = async () => {
+export const getAll = async (userId) => {
   try {
-    const orders = await db.Order.findAll({
-      include: [
-        {
-          model: db.OrderItem,
-        },
-      ],}
+    const orders = await db.Order.findAll(
+      {
+        include: [
+          {
+            model: db.OrderItem,
+          },
+        ],
+      }, 
+      {where: {userId: userId}}
     );
     if (orders)  return {
         err: 0,

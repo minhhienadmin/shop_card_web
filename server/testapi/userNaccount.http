@@ -3,16 +3,17 @@ POST http://localhost:3001/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "admin1@gmail.com",
-    "password": "mothaibabon"
+    "email": "admin112@gmail.com",
+    "password": "password"
 }
 ###
-POST http://localhost:3001/api/v1/auth/changeinfo
+PUT http://localhost:3001/api/v1/auth/changeinfo
 Content-Type: application/json
 
 {
-    "email": "admin1@gmail.com",
-    "fullname": "nyvmm"
+    "email": "admin112@gmail.com",
+    "fullname": "aaaaaaaaaaaaaaaaaaa",
+    "phone": "9999"
 }
 ###
 GET http://localhost:3001/api/v1/user/get?userId=1

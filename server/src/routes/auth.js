@@ -7,7 +7,7 @@ require('dotenv').config();
 const router = express.Router()
 
 router.post('/register',uploadCloud.single("avt"), Controllers.register)
-router.post('/changeinfo',uploadCloud.single("avt"), Controllers.changeinfo)
+router.put('/changeinfo',uploadCloud.single("avt"), Controllers.changeinfo)
 
 router.post('/login', Controllers.login)
 router.post('/refresh-token', Controllers.refreshTokenController)

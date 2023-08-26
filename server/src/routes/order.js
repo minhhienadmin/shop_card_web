@@ -11,7 +11,7 @@ router.get('/all', Controllers.getAll)
 // router.put('/update', Controllers.updateItem)
 
 // Private for admin
-router.get('/get-all', Controllers.getAll)
+// router.get('/get-all', Controllers.getAll)
 router.put('/update', Controllers.updateOrder)
 
 module.exports=router

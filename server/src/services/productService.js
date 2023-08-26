@@ -91,7 +91,7 @@ export const deleteOneProduct = async (productId) => {
       };
     }
 
-    await product.destroy();
+    await db.Product.destroy({where: { id:productId}});
 
     return {
       err: 0,

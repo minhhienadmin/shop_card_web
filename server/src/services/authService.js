@@ -32,22 +32,22 @@ export const register = (req) => new Promise(async(resolve, reject) => {
     }
 });
 
+
 export const changeinfo = (data) => new Promise(async(resolve, reject) => {
     try { 
 
-        const response = await db.User.findOne({
+        const user = await db.User.findOne({
             where:  { email:data?.email}
         });
         if (data.password) {
-            if (bcrypt.compareSync(data.password, response.password)) return{
+            if (bcrypt.compareSync(data.password, user.password)) return{
                 err: 1,
                 mes: "Password wrong!"
             };
             data.password=data.newpassword;
         }
-        console.log(">>>>>>>HERE")
-        response.update(data)
-        console.log(">>>>>>>data",response)
+        console.log(">>>>>>>data:   ",typeof(user))
+        await db.User.update(data, {where: { email:data?.email}})
         resolve({
             err: 0,
             mes: "Updated!"

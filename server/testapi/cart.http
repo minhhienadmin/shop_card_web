@@ -45,7 +45,7 @@ Content-Type: application/json
 ###
 GET  http://localhost:3001/api/v1/cart/item/get?cartItemId=2
 ###
-DELETE  http://localhost:3001/api/v1/cart/item/delete?cartItemId=1
+DELETE  http://localhost:3001/api/v1/cart/item/delete?cartItemId=11
 ###
 PUT  http://localhost:3001/api/v1/cart/item/update?cartItemId=2
 Content-Type: application/json

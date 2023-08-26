@@ -105,7 +105,7 @@ export const deleteCart = async (cartId) => {
         mes: 'Cart not found',
       };
     }
-
+    console.log("here")
     await cart.destroy({ transaction });
     await transaction.commit();
 

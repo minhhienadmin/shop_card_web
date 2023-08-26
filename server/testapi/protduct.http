@@ -18,10 +18,10 @@ GET http://localhost:3001/api/v1/product/questions
 GET http://localhost:3001/api/v1/product/get?productId=100002
 #product/:productId
 ###
-DELETE  http://localhost:3001/api/v1/product/delete?productId=100001
+DELETE  http://localhost:3001/api/v1/product/delete?productId=100033
 ###
 #cái này có thể chèn thêm ảnh
-PUT  http://localhost:3001/api/v1/product/update?productId=100006
+PUT  http://localhost:3001/api/v1/product/update?productId=100033
 Content-Type: application/json
 
 {

@@ -7,7 +7,7 @@ export const getAll = async (req, res) => {
     try {
         const userId  = req.query?.userId
         console.log(req.query)
-        const response = await Services.getAll()
+        const response = await Services.getAll(userId)
         return res.status(200).json(response)
         
     } catch (error) {
