@@ -1,4 +1,5 @@
 import db from '../models'
+import CartItem from '../models/CartItem';
 // const cloudinary = require('cloudinary').v2;
 
 
@@ -34,46 +35,30 @@ export const createCart = async (data) => {
 
 export const getAll = async (userId) => {
   try {
-    console.log('Getting all: ', userId);
+    console.log('Getting all of user: ', userId);
     const carts = await db.Cart.findAll({
       where: {
         userId: userId,
       },
       include: [
         {
-          model: db.CartItem,
-          include: {
-            model: db.Product,
-          },
-        },
+          model: CartItem
+        }
+        // {
+        //   model: db.CartItem,
+        //   include: {
+        //     model: db.Product,
+        //   },
+        // },
       ],
     });
 
-    const result = carts.map((cart) => {
-      const cartData = {
-        cartId: cart.id,
-        productList: cart.CartItems.map((cartItem) => {
-          return {
-            cartItemId: cartItem.id,
-            name: cartItem.Product.name,
-            productId: cartItem.Product.id,
-            material: cartItem.material,
-            size: cartItem.size,
-            sides: cartItem.sides,
-            effect: cartItem.effect,
-            quantity: cartItem.quantity,
-            isDesigned: cartItem.isDesigned,
-            img_src: cartItem.img_src,
-          };
-        }),
-      };
-      return cartData;
-    });
 
-    if (result.length!==0) return {
+    // if (result.length!==0) 
+    return {
       err: 0,
       mes: 'Got',
-      cartLists: result
+      cartLists: carts
     };
     return {
       err: 0,

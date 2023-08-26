@@ -1,9 +1,9 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../connection_database');
-const { associate } = require('./user');
+const { associate } = require('./User');
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   class OrderItem extends Model {
     static associate(models){
       OrderItem.belongsTo(models.Order, { foreignKey: 'orderId' });

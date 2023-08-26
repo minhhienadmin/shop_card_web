@@ -2,7 +2,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../connection_database');
 
-module.exports = (sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   class Question extends Model {
     static associate(models){
 

@@ -6,7 +6,7 @@ const { associate } = require('./user');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models){
-      Product.hasOne(models.PriceList)
+      Product.hasMany(models.PriceList, {foreignKey: 'productId'});
     }
   }
 

@@ -1,6 +1,6 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
-module.exports = (sequelize) => {
+
   class CartItem extends Model {
     static associate(models){
       CartItem.belongsTo(models.Cart, { foreignKey: 'cartId'});
@@ -74,11 +74,9 @@ module.exports = (sequelize) => {
 
     },
     {
-      sequelize,
       timestamps: false,
       modelName: 'CartItem',
       tableName: 'cartitems',
     }
   );
-    return CartItem;
-  }
+module.exports= CartItem;

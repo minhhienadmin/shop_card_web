@@ -1,9 +1,8 @@
 'use strict';
-const { Model, DataTypes } = require('sequelize');
-
+const { Model } = require('sequelize');
 const sequelize = require('../../connection_database');
 
-module.exports = (sequelize) => {
+module.exports = (sequelize, DataTypes) => {
   class Contact extends Model {
     static associate(models) {
       // define association here

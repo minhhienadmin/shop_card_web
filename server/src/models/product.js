@@ -1,9 +1,9 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../connection_database');
-const { associate } = require('./user');
+const { associate } = require('./User');
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   class Product extends Model {
     static associate(models){
       Product.hasMany(models.PriceList, {foreignKey: 'productId'});

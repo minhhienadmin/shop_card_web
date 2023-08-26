@@ -1,15 +1,17 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
-module.exports = (sequelize) => {
-  class CartItem extends Model {
-    static associate(models){
-      CartItem.belongsTo(models.Cart, { foreignKey: 'cartId'});
-      CartItem.belongsTo(models.Product, { foreignKey: 'productId' });
+const sequelize = require('../../connection_database');
+const { associate } = require('./user');
 
+module.exports = (sequelize, DataTypes) => {
+  class OrderItem extends Model {
+    static associate(models){
+      OrderItem.belongsTo(models.Order, { foreignKey: 'orderId' });
+      OrderItem.belongsTo(models.Product, { foreignKey: 'productId' });
     }
   }
 
-  CartItem.init(
+  OrderItem.init(
     {
       id:{
         type: DataTypes.INTEGER,
@@ -19,11 +21,11 @@ module.exports = (sequelize) => {
       },
 
       // key
-      cartId: {
+      orderId: {
           type: DataTypes.INTEGER,
           allowNull: false,
           references: {
-            model: 'Cart',
+            model: 'Order',
             key: 'id',
           },
         },
@@ -42,7 +44,7 @@ module.exports = (sequelize) => {
         // allowNull: false,
       },
       sides: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         defaultValue: 0,
       },
       price: {
@@ -71,14 +73,19 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         // allowNull: false,
       },
+      sides: {
+        type: DataTypes.STRING,
+        // allowNull: false,
+      },
 
     },
     {
-      sequelize,
       timestamps: false,
-      modelName: 'CartItem',
-      tableName: 'cartitems',
+      sequelize,
+      modelName: 'OrderItem',
+      tableName: 'orderItems',
     }
   );
-    return CartItem;
-  }
+
+  return OrderItem;
+}
