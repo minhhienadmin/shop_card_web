@@ -3,7 +3,7 @@
 GET  http://localhost:3001/api/v1/cart/get?userId=2
 
 ###
-DELETE   http://localhost:3001/api/v1/cart/delete?cartId=3
+DELETE   http://localhost:3001/api/v1/cart/delete?cartId=2
 ###
 # link này đâu cần đâu
 # PUT  http://localhost:3001/api/v1/cart/update?userId=2&cartId=1

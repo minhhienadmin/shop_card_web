@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   class Cart extends Model {
     static associate(models) {
       // define association here
-      Cart.hasMany(models.CartItem, { foreignKey: 'cartId'});
+      Cart.hasMany(models.CartCo, { foreignKey: 'cartId'});
       Cart.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }

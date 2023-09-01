@@ -1,14 +1,14 @@
-import db from '../models'
-import CartItem from '../models/CartItem';
+const { sequelize, models } = require('../models');
+
 // const cloudinary = require('cloudinary').v2;
 
 
 export const createCart = async (data) => {
-  const transaction = await db.sequelize.transaction();
+  const transaction = await models.sequelize.transaction();
   try {
     const { userId, productList } = data;
     // Create the cart
-    const cart = await db.Cart.create(
+    const cart = await models.Cart.create(
       {
         userId,
         status: 'pending', // Set the initial status of the cart
@@ -18,7 +18,7 @@ export const createCart = async (data) => {
     // Create the cart items
     const cartItems = [];
     for (const product of productList) {
-      const cartItem = await db.CartItem.create({...product, cartId: cart.id},{ transaction });
+      const cartItem = await models.CartCo.create({...product, cartId: cart.id},{ transaction });
       cartItems.push(cartItem);
     }
     await transaction.commit();
@@ -36,25 +36,17 @@ export const createCart = async (data) => {
 export const getAll = async (userId) => {
   try {
     console.log('Getting all of user: ', userId);
-    const carts = await db.Cart.findAll({
+    const carts = await models.Cart.findAll({
       where: {
         userId: userId,
       },
-      include: [
-        {
-          model: CartItem
-        }
-        // {
-        //   model: db.CartItem,
-        //   include: {
-        //     model: db.Product,
-        //   },
-        // },
-      ],
+      // include: [{
+      //   model: models.CartCo,
+      //   attributes: ['name']  
+      // }]
     });
 
-
-    // if (result.length!==0) 
+    if (carts)
     return {
       err: 0,
       mes: 'Got',
@@ -71,10 +63,10 @@ export const getAll = async (userId) => {
 };
 
 export const deleteCart = async (cartId) => {
-  const transaction = await db.sequelize.transaction();
+  const transaction = await models.sequelize.transaction();
   try {
     // Xóa tất cả các mục giỏ hàng liên quan đến giỏ hàng
-    await db.CartItem.destroy({
+    await models.CartCo.destroy({
       where: {
         cartId: cartId
       },
@@ -82,7 +74,7 @@ export const deleteCart = async (cartId) => {
     });
 
     // Xóa giỏ hàng
-    const cart = await db.Cart.findByPk(cartId, { transaction });
+    const cart = await models.Cart.findByPk(cartId, { transaction });
     if (!cart) {
       await transaction.rollback();
       return {
@@ -109,7 +101,7 @@ export const deleteCart = async (cartId) => {
 
 export const updateCart = async (cartId, updatedData) => {
   try {
-    const cart = await db.Cart.findByPk(cartId);
+    const cart = await models.Cart.findByPk(cartId);
     if (!cart) {
       return {
         err: 1,
@@ -135,14 +127,14 @@ export const updateCart = async (cartId, updatedData) => {
 
 export const addItem = async (cartId, itemData) => {
   try {
-    const cart = await db.Cart.findByPk(cartId);
+    const cart = await models.Cart.findByPk(cartId);
     if (!cart) {
       return {
         err: 1,
         mes: 'Cart not found',
       };
     }
-    await db.CartItem.create(
+    await models.CartCo.create(
       {
         cartId,
         ...itemData,
@@ -163,7 +155,7 @@ export const addItem = async (cartId, itemData) => {
 
 export const getItem = async (itemId) => {
   try {
-    const item = await db.CartItem.findByPk(itemId);
+    const item = await models.CartCo.findByPk(itemId);
     if (!item) {
       return {
         err: 1,
@@ -187,7 +179,7 @@ export const getItem = async (itemId) => {
 
 export const updateItem = async (itemId, updatedData) => {
   try {
-    const item = await db.CartItem.findByPk(itemId);
+    const item = await models.CartCo.findByPk(itemId);
     if (!item) {
       return {
         err: 1,
@@ -212,7 +204,7 @@ export const updateItem = async (itemId, updatedData) => {
 
 export const deleteItem = async (itemId) => {
   try {
-    const item = await db.CartItem.findByPk(itemId);
+    const item = await models.CartCo.findByPk(itemId);
     if (!item) {
       return {
         err: 1,

@@ -31,7 +31,7 @@ sequelize = new Sequelize(
   customizeConfig);
 
 const Cart = require('./Cart')(sequelize);
-const CartItem = require('./CartItem')(sequelize);
+const CartCo=require('./CartCo')(sequelize);
 const Comment = require('./Comment')(sequelize);
 const Contact = require('./Contact')(sequelize);
 const Order = require('./Order')(sequelize);
@@ -43,6 +43,25 @@ const Role = require('./Role')(sequelize);
 const User = require('./User')(sequelize);
 
 
+CartCo.belongsTo(Cart, { foreignKey: 'cartId'});
+CartCo.belongsTo(Product, { foreignKey: 'productId' });
+Cart.hasMany(CartCo, { foreignKey: 'cartId'});
+Cart.belongsTo(User, { foreignKey: 'userId' });
 
 
-module.exports = {sequelize,Cart,CartItem,Comment,Contact,Order,OrderItem,Prices,Product,Question,Role,User};
+const models={
+  Cart,
+  CartCo,
+  Comment,
+  Contact,
+  Order,
+  OrderItem,
+  Prices,
+  Product,
+  Question,
+  Role,
+  User
+}
+
+
+module.exports = {sequelize,models};
