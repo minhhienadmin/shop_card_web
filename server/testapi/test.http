@@ -1,2 +1,2 @@
 ###
-GET  http://localhost:3001/api/v1/test/user
+GET  http://localhost:3001/api/v1/test/create

@@ -7,8 +7,10 @@ import express from 'express'
 const router = express.Router()
 
 // PUBLIC ROUTES
-// router.get('/', controllers.getCurrent)    
-router.get('/user', controllers.displayModelFields)    
+router.get('/', controllers.getAll)   
+router.get('/create', controllers.create)
+
+// router.get('/user', controllers.displayModelFields)    
 // router.get('/all', controllers.getProducts)
 
 

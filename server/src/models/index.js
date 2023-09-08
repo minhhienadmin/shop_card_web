@@ -1,14 +1,17 @@
 'use strict';
-require('dotenv').config();
+require('dotenv').config()
+const fs = require('fs');
+const path = require('path');
 const Sequelize = require('sequelize');
-const env = process.env.NODE_ENV || 'development';
+const basename = path.basename(__filename);
+const db = {};
 
 let sequelize;
 const customizeConfig = {
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  dialect: process.env.DB_DIALECT,
-  logging: false,
+  port: process.env.DB_PORT||5432,
+  dialect: process.env.DB_DIALECT|| "postgres",
+  // logging: false,
   dialectOptions:
     process.env.DB_SSL === 'true' ?
       {
@@ -19,7 +22,7 @@ const customizeConfig = {
       } : {}
   ,
   query: {
-    "raw": true
+    "raw": false
   },
   timezone: "+07:00"
 }
@@ -30,38 +33,24 @@ sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   customizeConfig);
 
-const Cart = require('./Cart')(sequelize);
-const CartCo=require('./CartCo')(sequelize);
-const Comment = require('./Comment')(sequelize);
-const Contact = require('./Contact')(sequelize);
-const Order = require('./Order')(sequelize);
-const OrderItem = require('./OrderItem')(sequelize);
-const Prices = require('./Prices')(sequelize);
-const Product = require('./Product')(sequelize);
-const Question = require('./Question')(sequelize);
-const Role = require('./Role')(sequelize);
-const User = require('./User')(sequelize);
 
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  });
 
-CartCo.belongsTo(Cart, { foreignKey: 'cartId'});
-CartCo.belongsTo(Product, { foreignKey: 'productId' });
-Cart.hasMany(CartCo, { foreignKey: 'cartId'});
-Cart.belongsTo(User, { foreignKey: 'userId' });
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-const models={
-  Cart,
-  CartCo,
-  Comment,
-  Contact,
-  Order,
-  OrderItem,
-  Prices,
-  Product,
-  Question,
-  Role,
-  User
-}
-
-
-module.exports = {sequelize,models};
+module.exports = db;
