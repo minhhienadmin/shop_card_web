@@ -1,7 +1,6 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../connection_database');
-const { associate } = require('./User');
 
 module.exports = (sequelize) => {
   class Product extends Model {

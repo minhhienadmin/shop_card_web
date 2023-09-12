@@ -1,9 +1,9 @@
-'use strict';
-const { Pool } = require('pg');
+  'use strict';
+// const { Pool } = require('pg');
 const { Model, DataTypes } = require('sequelize');
-const SequelizePool = require('sequelize-pool');
+// const SequelizePool = require('sequelize-pool');
 
-module.exports = (pool) => {
+module.exports = (sequelize) => {
   class User extends Model {
     static associate(models) {
       // Define associations here
@@ -57,7 +57,7 @@ module.exports = (pool) => {
       }
     },
     {
-      sequelize: pool,
+      sequelize,
       modelName: 'User',
       tableName: 'users',
     }
