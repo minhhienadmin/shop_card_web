@@ -4,6 +4,7 @@ require('dotenv').config()
 import initRoutes from './src/routes'
 require('./connection_database')
 import './src/passport';
+import cookieParser from 'cookie-parser'
 const app = express()
 
 const allowedOrigins = [process.env.CLIENT_URL, process.env.HOST_URL, process.env.HOST_URL2, process.env.MANAGER_URL];
@@ -16,7 +17,7 @@ app.use(cors({
 // CRUD
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
+app.use(cookieParser())
 initRoutes(app)
 
 const PORT = process.env.PORT || 7749

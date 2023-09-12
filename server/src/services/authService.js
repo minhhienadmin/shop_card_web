@@ -18,9 +18,8 @@ export const register = (req) => new Promise(async(resolve, reject) => {
             },
             // attributes: { exclude: ['userId'] },
         });
-        console.log(response)
         
-        let token = response[1]? jwt.sign({userId: response[0].id, email: response[0].email, roleId: response[0].roleId},process.env.JWT_SECRET, {expiresIn: '1h'}) :null
+        let token = response[1]? jwt.sign({userId: response[0].id, email: response[0].email, roleId: response[0].roleId},process.env.JWT_SECRET, {expiresIn: 60}) :null
         resolve({
             err: response[1] ? 0 :1,
             mes: response[1] ? 'Register is successful' : 'Email is used already',
@@ -66,16 +65,16 @@ export const login = ({ email, password }) => new Promise(async (resolve, reject
         })
         const isChecked = response && bcrypt.compareSync(password, response.password)
         const accessToken = isChecked
-            ? jwt.sign({ userId: response.id, email: response.email }, process.env.JWT_SECRET, { expiresIn: '1000s' })
+            ? jwt.sign({ userId: response.id, email: response.email }, process.env.JWT_SECRET, { expiresIn: 3600 })
             : null
         // JWT_SECRET_REFRESH_TOKEN
         const refreshToken = isChecked
-            ? jwt.sign({ userId: response.id }, process.env.JWT_SECRET_REFRESH_TOKEN, { expiresIn: '6000s' })
+            ? jwt.sign({ userId: response.id }, process.env.JWT_SECRET_REFRESH_TOKEN, { expiresIn: 3600 })
             : null
         resolve({
             err: accessToken ? 0 : 1,
             mes: accessToken ? 'Login is successfully' : response ? 'Password is wrong' : 'Email has not been registered',
-            'access_token': accessToken ? `Bearer ${accessToken}` : accessToken,
+            'access_token': accessToken,
             'refresh_token': refreshToken
         })
         if (refreshToken) {

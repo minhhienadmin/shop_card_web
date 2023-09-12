@@ -1,9 +1,9 @@
 #COMMENT
 ###
-GET  http://localhost:3001/api/v1/commment/get?id=1
+GET  http://localhost:3001/api/v1/comment/get?productId=100000
 
 ###
-DELETE   http://localhost:3001/api/v1/comment/delete?id=4
+DELETE   http://localhost:3001/api/v1/comment/delete?id=2    
 ###
 PUT  http://localhost:3001/api/v1/comment/update?id=2
 ###
@@ -11,6 +11,9 @@ POST  http://localhost:3001/api/v1/comment/create?userId=2&productId=1
 Content-Type: application/json
 
 {
+    "id": 32,
+    "productId": 100000,
+    "userId": "2",
     "text": "Comment 1",
     "img": " < this will be a img and storge as a link > "
 }

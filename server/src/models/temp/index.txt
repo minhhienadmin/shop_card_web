@@ -1,0 +1,65 @@
+'use strict';
+require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
+const { Sequelize } = require('sequelize');
+const SequelizePool = require('sequelize-pool');
+
+const basename = path.basename(__filename);
+const db = {};
+
+const customizeConfig = {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT || 5432,
+  dialect: process.env.DB_DIALECT || 'postgres',
+  dialectOptions:
+    process.env.DB_SSL === 'true'
+      ? {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+        }
+      : {},
+  logging: false,
+  query: {
+    raw: false,
+  },
+  timezone: '+07:00',
+};
+
+const pool = new SequelizePool({
+  max: 10, // Số lượng kết nối tối đa trong pool
+  min: 1, // Số lượng kết nối tối thiểu trong pool
+  acquire: 30000, // Thời gian tối đa để chờ một kết nối (30 giây)
+  idle: 10000, // Thời gian tối đa một kết nối có thể tồn tại trong pool mà không sử dụng (10 giây)
+});
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
+  customizeConfig
+);
+
+pool.add(sequelize);
+
+fs.readdirSync(__dirname)
+  .filter((file) => {
+    return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js';
+  })
+  .forEach((file) => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;
