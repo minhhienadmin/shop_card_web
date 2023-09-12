@@ -5,10 +5,10 @@ import { interalServerError, badRequest } from "../middlewares/handle_errors"
 
 export const getComments = async (req, res) => {
     try {
-
-        const userId  = req.query.userId
+        const productId  = req.query.productId
+        console.log(productId)
         // console.log(req.query)
-        const response = await Services.getAll(userId)
+        const response = await Services.getCommentsByProductId(productId)
         return res.status(200).json(response)
 
     } catch (error) {
@@ -40,7 +40,7 @@ export const deleteComment = async (req,res) => {
     try {
         // console.log(req.query.userId,req.body.userId)
         // if (req.body.userId!==req.query.userId) return notAuth(res);
-        let response = await Services.deleteComment(req.query?.commentId)
+        let response = await Services.deleteComment(req.query?.id)
 
         if (response===true) 
         return res.status(200).json({
