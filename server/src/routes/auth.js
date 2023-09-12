@@ -24,7 +24,7 @@ router.get('/google/callback', (req,res,next)=>{
   })(req, res, next)
   },(req,res)=>{
     // res.redirect(`/`)
-    res.redirect(`${process.env.CLIENT_URL}login-success/${req.user?.userId}`)
+    res.redirect(`${process.env.CLIENT_URL}`)
   })
 
 router.post('login-success',Controllers.login_success)
