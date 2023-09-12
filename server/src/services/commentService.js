@@ -1,8 +1,11 @@
+import db from '../models'
+
 export const createComment = async (commentData) => {
   try {
     const { userId, productId, text, img } = commentData;
 
     const comment = await db.Comment.create({
+
       userId,
       productId,
       text,
@@ -26,7 +29,7 @@ export const createComment = async (commentData) => {
 export const deleteComment = async (commentId) => {
 try {
   const comment = await db.Comment.findByPk(commentId);
-
+  // console.log(commentId)
   if (!comment) {
   return {
       err: 1,
@@ -57,15 +60,19 @@ export const getCommentsByProductId = async (productId) => {
       include: [
         {
           model: db.User,
-          attributes: ['id', 'username'],
+          attributes: ['id', 'fullname'],
         },
       ],
     });
-
+    if (comments.length>0)
     return {
       err: 0,
       mes: 'Comments found',
       comments: comments.map((comment) => comment.toJSON()),
+    };
+    else return{
+      err: 0,
+      mes: 'This product has no comments',
     };
   } catch (error) {
     return {
