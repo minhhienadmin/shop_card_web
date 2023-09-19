@@ -7,7 +7,7 @@ import './src/passport';
 import cookieParser from 'cookie-parser'
 const app = express()
 
-const allowedOrigins = [process.env.CLIENT_URL, process.env.HOST_URL, process.env.HOST_URL2, process.env.MANAGER_URL];
+const allowedOrigins = [process.env.CLIENT_URL, process.env.HOST_URL, process.env.HOST_URL2, process.env.MANAGER_URL, process.env.MAIN_URL];
 
 app.use(cors({
     origin: allowedOrigins,
